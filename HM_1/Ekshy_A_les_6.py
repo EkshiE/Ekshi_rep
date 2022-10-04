@@ -23,12 +23,12 @@ str_2 = 'основанный на JavaScript. Но при этом формат
 str_3 = 'независим от JS и может использоваться в любом'
 str_4 = 'языке программирования.'
 
-file = open('../../text.txt', 'w')
+file = open('requlrements.txt', 'w')
 file.write(f'{str_1}\n{str_2}')
 
 file.close()
 
-with open('../../text.txt', 'a') as file:
+with open('requlrements.txt', 'a') as file:
     file.write(f'\n{str_3}\n{str_4}')
 
 """ Exercise 3 """
