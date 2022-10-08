@@ -1,5 +1,5 @@
 """ Homework for lesson 8
-Exercise 1: Creating a consumer class 'MyAuto
+Exercise 1: Creating a consumer class 'MyAuto'
 Exercise 2: Class heir 'Truck' and c lass heir 'Car'
 :return: checking all methods and attributes
 
