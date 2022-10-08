@@ -32,10 +32,12 @@ class MyAuto:
 
     def move(self):
         """ Outputs the word 'move' when entering attributes """
+
         print('move')
 
     def birthday(self):
         """ Adds 1 to the year of manufacture of the car """
+
         print(self.age + 1)
 
     def stop(self):
@@ -48,7 +50,8 @@ class Truck(MyAuto):
     """ Class heir 'MyAuto' """
 
     def __init__(self, brand: str, age: int, mark: str, max_load: int):
-        """ Adding a required attribute max_load
+        """
+        Adding a required attribute max_load
         :param max_load: Maximum vehicle load
         """
 
@@ -62,8 +65,10 @@ class Truck(MyAuto):
         super().move()
 
     def load(self):
-        """ When calling the method, there is a pause of 1 second,
-         then the message 'load' is issued and again a pause of 1 second """
+        """
+        When calling the method, there is a pause of 1 second,
+        then the message 'load' is issued and again a pause of 1 second
+        """
 
         datetime.now(time.sleep(1))
         print('load')
@@ -74,8 +79,10 @@ class Car(MyAuto):
     """ Class heir 'MyAuto' """
 
     def __init__(self, brand: str, age: int, mark: str, max_speed: int):
-        """ Adding a required attribute max_speed
-        :param max_speed: Maximum vehicle load"""
+        """
+        Adding a required attribute max_speed
+        :param max_speed: Maximum vehicle load
+        """
 
         super().__init__(brand, age, mark)
         self.max_speed = max_speed
