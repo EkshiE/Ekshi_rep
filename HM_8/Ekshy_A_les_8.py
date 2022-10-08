@@ -2,10 +2,13 @@
 Exercise 1: Creating a consumer class 'MyAuto
 Exercise 2: Class heir 'Truck' and c lass heir 'Car'
 :return: checking all methods and attributes
+
+Exercise 3: Subtraction of two circles
 """
 
 from datetime import datetime
 import time
+import math
 
 
 class MyAuto:
@@ -112,3 +115,28 @@ my_auto_4.move()
 
 my_auto_4 = Car('Audi', 2020, 'Q8', 290)
 my_auto_4.move()
+
+
+class Circle:
+
+    def __init__(self):
+        """ Entering Radius Values"""
+        self.rad_1 = float(input('Enter radius 1: '))
+        self.rad_2 = float(input('Enter radius 2: '))
+
+    def subtraction(self):
+        """
+        Calculation of perimeters and their subtraction
+        :return: we produce the difference modulo
+        """
+
+        if self.rad_1 != self.rad_2:
+            subtraction_1 = 2 * self.rad_1 * math.pi
+            subtraction_2 = 2 * self.rad_2 * math.pi
+            print(round(subtraction_1 - subtraction_2))
+        else:
+            print('Point')
+
+
+circle = Circle()
+circle.subtraction()
