@@ -42,17 +42,17 @@ my_dict = {
     '888333': ['Nikolay', 37],
 }
 
-with open('../../my_dict.json', 'w') as file:
+with open('my_dict.json', 'w') as file:
     json.dump(my_dict, file)
 
 
 """ Exercise 4 """
 
 
-with open('../../my_dict.json', 'r') as my_dict:
+with open('my_dict.json', 'r') as my_dict:
     my_dict = json.load(my_dict)
 
-with open('../../cols.csv', 'w', encoding='utf-8') as file:
+with open('cols.csv', 'w', encoding='utf-8') as file:
     cols = ['Id', 'Name', 'Age', 'Phone']
     csv_file = csv.DictWriter(
         file, delimiter=',',
