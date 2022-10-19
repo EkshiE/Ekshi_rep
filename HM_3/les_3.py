@@ -92,15 +92,15 @@ while True:
 #     c = (c + (b ** 3))
 # print(c)
 
-# 2 вариант с while:
-#
-# n = int(input('Введите число: '))
-# b = 0
-# c = 0
-#
-# while n:
-#     b = (b + 1)
-#     c = (c + (b ** 3))
-#     if b == n:
-#         break
-# print(c)
+#2 вариант с while:
+
+n = int(input('Введите число: '))
+b = 0
+c = 0
+
+while n:
+    b = (b + 1)
+    c = (c + (b ** 3))
+    if b == n:
+        break
+print(c)
