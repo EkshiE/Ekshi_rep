@@ -1,0 +1,57 @@
+
+"""Создали базу данных `company`"""
+
+CREATE SCHEMA IF NOT EXISTS `company` CHARSET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+
+"""Вошли в базу данных `company`"""
+
+USE `company`;
+
+
+"""Создали таблицы `state` и `depart`"""
+
+CREATE TABLE `state`(
+    `name` VARCHAR (40) NOT NULL PRIMARY KEY UNIQUE ,
+    `id_name` VARCHAR (14) NOT NULL,
+    `job_title` VARCHAR (40) NOT NULL,
+    `payment` INT NOT NULL,
+    `perf_appraisal` INT NOT NULL
+);
+
+CREATE TABLE `depart`(
+    `name` VARCHAR (40) NOT NULL PRIMARY KEY UNIQUE,
+    `name_depart` VARCHAR(40)  NOT NULL,
+    `id_depart` INT NOT NULL,
+    `descriptions` VARCHAR(400) NOT NULL,
+    `perf_appraisal` INT NOT NULL
+
+);
+
+
+"""Создали внешний ключ `fk_1`"""
+
+ALTER TABLE `state`
+   ADD CONSTRAINT fk_1 FOREIGN KEY (`name`)
+      REFERENCES `depart` (`name`)
+      ON DELETE CASCADE
+      ON UPDATE CASCADE;
+
+
+"""Создали выборку сотрудников с рейтингом ниже 5"""
+SELECT `name`, `id_name`, `perf_appraisal`
+FROM state
+WHERE `perf_appraisal` < 5;
+
+
+"""Создали рейтинг сотрудников компании"""
+SELECT depart.id_depart AS `id_depart_1`,
+       state.`name` AS `name_1`,
+       state.`perf_appraisal` AS `perf_appraisal_1`,
+       depart.perf_appraisal AS `perf_appraisal_1`
+FROM `depart`
+RIGHT JOIN `state`
+ON `depart`.name = `state`.name;
+
+"""Фонд оплаты труда всех сотрудников"""
+SELECT SUM(`payment`) FROM state
