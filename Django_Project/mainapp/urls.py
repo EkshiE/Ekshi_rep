@@ -12,29 +12,27 @@ Class-based views
 Including another URLconf
     1. Import to include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-from django.conf import settings
-from django.conf.urls.static import static
-from django.contrib import admin
-from django.urls import path
-
-from mainapp.views import discipline
-from mainapp.views import main
+# """
+#
+# from django.urls import path
+# from django.contrib import admin
+#
+# from mainapp.views import *
 # from django.conf.urls import url
-
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', main, name='main'),
-    # path('discipline/', discipline),
-
-    path('discipline/', main, name='discipline'),
-    # path('student/<int:id>', students_list),
-    # path('', groups),
-]
-
-if settings.DEBUG:
-    urlpatterns += static(
-        settings.MEDIA_URL,
-        document_root=settings.MEDIA_ROOT
-    )
+#
+# # from mainapp.views import students_list
+#
+# # from mainapp.views import discipline
+# # from mainapp.views import groups
+# # from mainapp.views import news
+#
+#
+# urlpatterns = {
+#     path('admin/', admin.site.urls),
+#     path('', main),
+#     # path('discipline', main, name='discipline'),
+#
+#     # path('', students_list),
+#     # path('student/<int:id>', students_list),
+#     # path('', groups),
+# }
