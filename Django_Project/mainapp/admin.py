@@ -1,4 +1,7 @@
 from django.contrib import admin
-from .models import Person
 
-admin.site.register(Person)
+from .models import Group
+from .models import Students
+
+admin.site.register(Students)
+admin.site.register(Group)
