@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 
+
 <html lang="ru">
 
   <head class="header">
@@ -13,7 +14,7 @@
 
       <link rel="icon" href="https://www.w3schools.com/images/w3schools_green.jpg'">
     <link rel="stylesheet" href="{{STATIC_URL}}{% static 'css/style.css' %}">
-      <title>{% block title %}{% endblock title%}</title>
+      <title>Электронный дневник</title>
 
 
   </head>
@@ -41,32 +42,27 @@
         <div class="row">
           <div class="col-12 col-md-2">
             <ul>
-              <li class="nav-logo"><a href="mainapp/index.html">Главная</a> </li>
+              <li class="nav-logo"><a href="{%url 'main' %}">Главная</a> </li>
             </ul>
               <br>
               <ul>
-              <li class="nav-logo"><a href="mainapp/news.html">Новости и объявления</a> </li>
+              <li class="nav-logo"><a href="{%url 'news' %}">Новости и объявления</a> </li>
             </ul>
               <br>
             <ul>
-              <li><a href="mainapp/groups.html">Группы</a></li>
+              <li><a href="{%url 'groups' %}">Группы</a></li>
             </ul>
               <br>
              <ul>
-              <li><a href="mainapp/schedule.html">Расписание</a></li>
+              <li><a href="{%url 'schedule' %}">Расписание</a></li>
              </ul>
               <br>
              <ul>
-              <li><a href="{url discipline}">Дисциплина</a>
-                  <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Домашнее задание</a></li>
-                      <li><a class="dropdown-item" href="#">Конспект</a></li>
-                  </ul>
-              </li>
+              <li><a href="{%url 'homework' %}">Домашнее задание</a></li>
             </ul>
           </div>
           <div class="col-12 col-md-8">{% block content %}{% endblock content %}</div>
-          <div class="col-12 col-md-2"></div>
+          <div class="col-12 col-md-2">{% block content_2 %}{% endblock content_2 %}</div>
         </div>
 
       </div>

@@ -1,6 +1,4 @@
-from django.http import HttpResponse
 from django.shortcuts import render
-from django.template import loader
 
 from .models import Group
 from .models import Students
@@ -16,12 +14,36 @@ def main(request):
     return render(request, 'mainapp/index.html')
 
 
-def discipline(request):
+def news(request):
     """
     :param request:
     :return:
     """
-    return render(request, 'mainapp.discipline.html')
+    return render(request, 'mainapp/news.html')
+
+
+def homework(request):
+    """
+    :param request:
+    :return:
+    """
+    return render(request, 'mainapp/homework.html')
+
+
+def groups(request):
+    """
+    :param request:
+    :return:
+    """
+    return render(request, 'mainapp/groups.html')
+
+
+def schedule(request):
+    """
+    :param request:
+    :return:
+    """
+    return render(request, 'mainapp/schedule.html')
 
 
 def students_list(request):
@@ -59,18 +81,18 @@ def group_list(request):
     current_group = get_current_group(request)
 
     if current_group:
-        groups = Group.objects.filter(title=current_group)
+        groups1 = Group.objects.filter(title=current_group)
     else:
-        groups = Group.objects.all()
+        groups1 = Group.objects.all()
 
     order_by = request.GET.get('order_by')
 
     if order_by == 'title':
-        groups = groups.order_by(order_by)
+        groups1 = groups1.order_by(order_by)
 
         if request.GET.get('request') == 1:
-            groups = groups.reverse()
+            groups1 = groups.reverse()
 
-    contex = paginate(groups, 3, request, {}, var_name='groups')
+    contex = paginate(groups1, 3, request, {}, var_name='groups')
 
     return render(request, 'templates/groups_progress.html', contex)
