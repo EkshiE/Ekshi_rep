@@ -1,2 +1,4 @@
 Django == 3.2.15
 python-dotenv=0.21.0
+mysqlclient=2.1.1
+Pillow=9.4.0

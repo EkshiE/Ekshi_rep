@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ post.title }}{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <div class="new_post">
+            <img class="img-thumbnail" src="{{ post.photo.url }}">
+            <p class="new_str">{{ post.post|linebreaks }}</p>
+        </div>
+    </div>
+{% endblock content %}

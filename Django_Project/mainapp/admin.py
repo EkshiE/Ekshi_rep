@@ -1,11 +1,11 @@
+from django.utils.safestring import mark_safe
 from django.contrib import admin
 
 from .forms import StudentFormAdmin
-from .models import BlogPost
+from django.urls import reverse
+
 from .models import Group
 from .models import Students
-from .models import TimetableClasses
-from .models import Topic
 
 
 class StudentsAdmin(admin.ModelAdmin):
@@ -19,7 +19,6 @@ class StudentsAdmin(admin.ModelAdmin):
         'photo',
     ]
     list_display_links = ['last_name']
-    list_editable = ['student_group']
     list_filter = ['student_group']
     search_fields = [
         'last_name',
@@ -34,9 +33,9 @@ class StudentsAdmin(admin.ModelAdmin):
     @staticmethod
     def photo(obj):
         """Вставка фото
-        :param obj: фаил
+        :param obj: файл
         """
-        return make_safe(
+        return mark_safe(
             f'<imj src="{obj.photo.url}"'
             f' height="30", wight="30">'
         )
@@ -47,7 +46,7 @@ class StudentsAdmin(admin.ModelAdmin):
     #     :param obj
     #     """
     #     return reverse(
-    #         viewname='student_edit',
+    #         rename='student_edit',
     #         kwargs={'pk': obj.pk},
     #     )
 
@@ -66,25 +65,5 @@ class GroupAdmin(admin.ModelAdmin):
     ordering = ['leader']
 
 
-class TimetableClassesAdmin(admin.ModelAdmin):
-    """ Форматирование Расписания в Admin"""
-
-    list_display = [
-        'data',
-        'time',
-        'discipline',
-        'teacher',
-        'student_group'
-
-    ]
-
-    list_filter = ['data', 'student_group', 'teacher']
-    search_fields = ['teacher', 'discipline']
-    list_per_page = 10
-
-
 admin.site.register(Students, StudentsAdmin)
 admin.site.register(Group, GroupAdmin)
-admin.site.register(Topic)
-admin.site.register(TimetableClasses, TimetableClassesAdmin)
-admin.site.register(BlogPost)
