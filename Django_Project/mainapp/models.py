@@ -1,9 +1,10 @@
-from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from .mixims import SoftDateTimeMixim
 
-class Students(models.Model):
+
+class Students(models.Model, SoftDateTimeMixim):
     """ Student model """
 
     class Meta:
@@ -64,11 +65,11 @@ class Students(models.Model):
 
     )
 
-    def __repr__(self):
-        return f'<Студент {self.last_name} {self.first_name}>'
+    def __str__(self):
+        return f'{self.last_name} {self.first_name}'
 
 
-class Group(models.Model):
+class Group(models.Model, SoftDateTimeMixim):
     """ Group model """
 
     class Meta:
@@ -78,7 +79,7 @@ class Group(models.Model):
     title = models.CharField(
         max_length=256,
         blank=False,
-        verbose_name=u'Название',
+        verbose_name=u'Название группы',
     )
 
     leader = models.OneToOneField(
@@ -103,15 +104,14 @@ class Group(models.Model):
 
     )
 
-    def __repr__(self):
+    def __str__(self):
         if self.leader:
-            return (f'<Группа {self.title}, староста- {self.leader.first_name}'
-                    f' {self.leader.last_name}>'
+            return (f'{self.title}'
                     )
-        return f'<Группа {self.title}>'
+        return f' {self.title}'
 
 
-class Topic(models.Model):
+class Topic(models.Model, SoftDateTimeMixim):
     """ Topic model """
 
     class Meta:
@@ -124,9 +124,10 @@ class Topic(models.Model):
         verbose_name=u'Дисциплина',
     )
     title = models.CharField(
+        _('Название темы'),
+        null=False,
         max_length=256,
         blank=False,
-        verbose_name=u'Название темы',
     )
 
     teacher = models.CharField(
@@ -158,16 +159,15 @@ class Topic(models.Model):
         editable=True,
         auto_now_add=True,
         verbose_name=u'Время создания',
-
     )
 
-    def __repr__(self):
-        return (f'<Дисциплина {self.discipline}, тема: {self.title}'
-                f' преподаватель:{self.teacher}>'
+    def __str__(self):
+        return (f'Дисциплина {self.discipline}, тема: {self.title}'
+                f' преподаватель:{self.teacher}'
                 )
 
 
-class TimetableClasses(models.Model):
+class TimetableClasses(models.Model, SoftDateTimeMixim):
     """Model: Timetable of classes  """
 
     class Meta:
@@ -205,18 +205,66 @@ class TimetableClasses(models.Model):
         on_delete=models.PROTECT,
     )
 
-    def __repr__(self):
-        return (f'<Дата {self.time}, дисциплина: {self.discipline}'
-                f' преподаватель:{self.teacher}>'
+    def __str__(self):
+        return (f'Дата и время {self.time},{self.discipline}-'
+                f' преподаватель:{self.teacher}'
                 )
 
 
-class BlogPost(models.Model):
-    title = models.CharField(
-        _("Blog Title"), max_length=250,
-        null=False, blank=False
-    )
-    body = RichTextUploadingField()
+class AttendanceJournal(models.Model, SoftDateTimeMixim):
+    """ Модель Журнал посещаемости"""
 
-    def __str__(self):
-        return self.title
+    class Meta(SoftDateTimeMixim):
+        verbose_name = u'Посещаемость'
+
+    student = models.ForeignKey(
+        'Students',
+        verbose_name='Студент',
+        blank=False,
+        unique_for_month='date',
+        on_delete=models.PROTECT,
+    )
+
+    date_journal = models.DateField(
+        blank=False,
+
+    )
+
+    present_day_1 = models.BooleanField(default=False)
+    present_day_2 = models.BooleanField(default=False)
+    present_day_3 = models.BooleanField(default=False)
+    present_day_4 = models.BooleanField(default=False)
+    present_day_5 = models.BooleanField(default=False)
+    present_day_6 = models.BooleanField(default=False)
+    present_day_7 = models.BooleanField(default=False)
+    present_day_8 = models.BooleanField(default=False)
+    present_day_9 = models.BooleanField(default=False)
+    present_day_10 = models.BooleanField(default=False)
+    present_day_11 = models.BooleanField(default=False)
+    present_day_12 = models.BooleanField(default=False)
+    present_day_13 = models.BooleanField(default=False)
+    present_day_14 = models.BooleanField(default=False)
+    present_day_15 = models.BooleanField(default=False)
+    present_day_16 = models.BooleanField(default=False)
+    present_day_17 = models.BooleanField(default=False)
+    present_day_18 = models.BooleanField(default=False)
+    present_day_19 = models.BooleanField(default=False)
+    present_day_20 = models.BooleanField(default=False)
+    present_day_21 = models.BooleanField(default=False)
+    present_day_22 = models.BooleanField(default=False)
+    present_day_23 = models.BooleanField(default=False)
+    present_day_24 = models.BooleanField(default=False)
+    present_day_25 = models.BooleanField(default=False)
+    present_day_26 = models.BooleanField(default=False)
+    present_day_27 = models.BooleanField(default=False)
+    present_day_28 = models.BooleanField(default=False)
+    present_day_29 = models.BooleanField(default=False)
+    present_day_30 = models.BooleanField(default=False)
+    present_day_31 = models.BooleanField(default=False)
+
+    def __repr__(self):
+        return (
+            f'{self.student.last_name} '
+            f'{self.date_journal.month}'
+            f'{self.date_journal.year}'
+        )

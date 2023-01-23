@@ -1,4 +1,4 @@
-""" This module is needed for auxiliary functions """
+""" Этот модуль нужен для вспомогательных функций """
 from django.core.paginator import EmptyPage
 from django.core.paginator import PageNotAnInteger
 from django.core.paginator import Paginator
@@ -8,7 +8,7 @@ from .models import Group
 
 def get_current_group(request):
     """
-    Returns currently selected group ju None
+    Возвращает текущую выбранную группу или None
     :param request: Object request
     """
     pk = request.COOKIES.get('current_group')

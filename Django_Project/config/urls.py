@@ -16,50 +16,16 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import include, path
-from mainapp.views import groups
-from mainapp.views import homework
-from mainapp.views import main
+from django.urls import path
+from django.urls import include
 
 urlpatterns = [
-    # для Главной
-    path('', main, name='main'),
-
-    # для Новостей и объявления
-    path('news/', groups, name='news'),
-
-    # для Групп
-    path('groups/', groups, name='groups'),
-
-    # для Расписания
-    path('schedule/', groups, name='schedule'),
-
-    # для Дом.задания
-    path('homework/', homework, name='homework'),
-
-
-    # для Админа
     path('admin/', admin.site.urls),
-    path('ckeditor/', include('ckeditor_uploader.urls'))
+    path('', include('mainapp.urls')),
+    path('news/', include('news.urls')),
 ]
 
-urlpatterns += static(
-    settings.MEDIA_URL,
-    document_root=settings.MEDIA_ROOT
-)
-
 if settings.DEBUG:
-    urlpatterns += static(
-        settings.STATIC_URL,
-        document_root=settings.STATIC_ROOT
-    )
-    urlpatterns += static(
-        settings.MEDIA_URL,
-        document_root=settings.MEDIA_ROOT
-    )
-
-if settings.DEBUG:
-    urlpatterns += static(
-        settings.MEDIA_URL,
-        document_root=settings.MEDIA_ROOT
-    )
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT
+                          )
