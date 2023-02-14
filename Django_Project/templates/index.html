@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+
+<head class="header">
+    <meta charset="UTF-8">
+    <meta name="description" content="Электронный журнал">
+    <meta name="keywords" content="Электронный журнал">
+    <meta name="robots" content="index follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ STATIC_URL }}{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{{ STATIC_URL }}{% static 'css/style.css' %}">
+<!--    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">-->
+<!--    <link rel="stylesheet" href="static/css/style.css">-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Roboto:ital,wght@1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Pacifico&display=swap" rel="stylesheet">
+    <!--    <link rel="icon" href="static/img/icon.png">-->
+    <link rel="icon" href="{{ STATIC_URL }}{% static 'img/icon.png' %}">
+    <title>Электронный дневник</title>
+</head>
+
+
+<body>
+<div class="intro">
+    <header class="header">
+        <div class="container">
+            <div class="header__inner">
+                <div class="header__logo">
+                    Помощник для обучающих и обучающихся
+                </div>
+            </div>
+
+        </div>
+    </header>
+    <div class="container">
+        <div class="intro__inner">
+            <h1 class="intro__title">Пошли учиться?!</h1>
+        </div>
+        {# about #}
+        <div class="about">
+            <div class="about__item">
+                <div class="about__img">
+                    <img src="../static/img/about/news.png" width="270px" height="160px">
+                </div>
+                <div class="about__nav">
+                    <a class="about__nlink" href="{% url 'news' %}" target="_blank">#</a>
+                </div>
+            </div>
+            <div class="about__item">
+                <div class="about__img">
+                    <img src="../static/img/about/group.jpg" width="270px" height="160px">
+                </div>
+                <div class="about__nav">
+                    <a class="about__nlink" href="{% url 'group' %}" target="_blank">#</a>
+                </div>
+            </div>
+            <div class="about__item">
+                <div class="about__img">
+                    <img src="../static/img/about/timetable.jpg" width="270px" height="160px">
+                </div>
+                <div class="about__nav">
+                    <a class="about__nlink" href="{% url 'timetable' %}" target="_blank">#</a>
+                </div>
+            </div>
+            <div class="about__item">
+                <div class="about__img">
+                    <img src="../static/img/about/homework.jpg" width="270px" height="160px">
+                </div>
+                <div class="about__nav">
+                    <a class="about__nlink" href="{% url 'homework' %}" target="_blank">#</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    {# about #}
+    <footer class="footer">&copy; Экши Все права защищены 2022</footer>
+</div>
+{# intro #}
+
+<script src="{{ STATIC_URL }}{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+<!--<script src="static/bootstrap/js/bootstrap.min.js"></script>-->
+
+</body>
+
+
+</html>

@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Новости и объявления{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <div class="blog__container">
+            {% for p in posts %}
+                <div class="blog">
+                    <div class="blog__item">
+                        <div class="blog__header">
+                            <a href="{{ p.get_absolute_url }}">
+                                <img class="blog__photo" src="{{ p.photo.url }}" alt="1">
+                            </a>
+                            <div class="blog__date">
+                                <div class="blog__date_day">{{ p.time_create|date:"d" }}</div>
+                                {{ p.time_create|date:"b" }}
+                            </div>
+                        </div>
+                        <div class="blog__content">
+                            <div class="blog__title">
+                                <a href={{ p.get_absolute_url }}>{{ p.title }}</a></div>
+                            <div class="blog__text">
+                                <p>{{ p.summary }}</p>
+                            </div>
+                        </div>
+                        <div class="blog__footer">
+                            <div class="blog-stat">
+                                <span class="blog-stat__item">
+                                     <img alt="1" src="../../static/img/blog-stat__item/1.png">42
+                                </span>
+                                <span class="blog-stat__item">
+                                     <img alt="2" src="../../static/img/blog-stat__item/2.png">7
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>   <!--./blog-->
+            {% endfor %}<!--end-for bloc-->
+        </div>
+
+        <div class="pagination">
+            <div class="page">
+                <span class="page_item">
+                    {% if page_obj.has_previous %}
+                        <a class="page_a" href="?page=1">&lt;</a>
+                        <a class="page_a" href="?page={{ page_obj.previous_page_number }}">Следующая</a>
+                    {% endif %}
+
+                    <span class="page_now"> {{ page_obj.number }} </span>
+
+                    {% if page_obj.has_next %}
+                        <a class="page_a" href="?page={{ page_obj.next_page_number }}">Следующая</a>
+                        <a class="page_a" href="?page={{ page_obj.paginator.num_pages }}">&gt;</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

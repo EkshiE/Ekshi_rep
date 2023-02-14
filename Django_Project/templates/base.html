@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="ru">
+
+<head class="header">
+    <meta charset="UTF-8">
+    <meta name="description" content="Электронный журнал">
+    <meta name="keywords" content="Электронный журнал">
+    <meta name="robots" content="index follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ STATIC_URL }}{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{{ STATIC_URL }}{% static 'css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Roboto:ital,wght@1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ STATIC_URL }}{% static 'img/icon.png' %}">
+    <title>Электронный дневник</title>
+</head>
+
+
+<body>
+<div class="intro">
+    <header class="header__base">
+        <div class="container">
+            <div class="nav">
+                <a class="nav__link" href="{% url 'main' %}">Главная</a>
+                <a class="nav__link" href="{% url 'news' %}">Новости</a>
+                <a class="nav__link" href="{% url 'group' %}">Группа</a>
+                <a class="nav__link" href="{% url 'timetable' %}">Расписание</a>
+                <a class="nav__link" href="{% url 'homework' %}">Домашнее задание</a>
+            </div>
+            <h1 class="title">{% block title %}{% endblock title %}</h1>
+        </div>
+    </header>
+
+    {% block content %} {% endblock content %}
+
+    <footer class="footer">&copy; Все права защищены 2022</footer>
+</div>    <!-- intro-->
+
+<script src="{{ STATIC_URL }}{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+
+</body>
+
+</html>
